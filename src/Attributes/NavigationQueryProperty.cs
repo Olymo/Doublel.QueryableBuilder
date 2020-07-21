@@ -5,11 +5,11 @@ using System.Text;
 
 namespace Doublel.DynamicQueryBuilder.Attributes
 {
-    public class NavigationQueryPropertyAttribute : Attribute
+    public class WithQueryPropertyAttribute : Attribute
     {
         public string PropertyToCompareWith { get; }
         public bool IsNavigationProperty => PropertyToCompareWith.Contains(".");
-        public NavigationQueryPropertyAttribute(string propertyToCompareWith = null, [CallerMemberName] string propertyName = null)
+        public WithQueryPropertyAttribute(string propertyToCompareWith = null, [CallerMemberName] string propertyName = null)
         {
             var name = propertyToCompareWith ?? propertyName;
 

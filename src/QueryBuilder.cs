@@ -101,7 +101,7 @@ namespace Doublel.DynamicQueryBuilder
                     throw new InvalidOperationException("Property can be decorated using only one of QueryProperty attributes at once.");
                 }
 
-                if (property.HasAttribute<QueryProperty>() || property.HasAttribute<NavigationQueryPropertyAttribute>())
+                if (property.HasAttribute<QueryProperty>() || property.HasAttribute<WithQueryPropertyAttribute>())
                 {
                     collection = AppendWhereSingleProperty(collection, property);
                 }
@@ -158,14 +158,14 @@ namespace Doublel.DynamicQueryBuilder
                 return FilterByQueryProperty(collection, property, queryProperty);
             }
 
-            var mustHaveOneProperty = property.GetAttribute<NavigationQueryPropertyAttribute>();
+            var mustHaveOneProperty = property.GetAttribute<WithQueryPropertyAttribute>();
 
-            return FilterByMustHaveOneProperty(collection, property, mustHaveOneProperty);
+            return FilterByWith(collection, property, mustHaveOneProperty);
         }
 
-        private IQueryable<T> FilterByMustHaveOneProperty<T>(IQueryable<T> collection, PropertyInfo property, NavigationQueryPropertyAttribute attribute) where T : class
+        private IQueryable<T> FilterByWith<T>(IQueryable<T> collection, PropertyInfo property, WithQueryPropertyAttribute attribute) where T : class
         {
-            if (!typeof(T).PropertyCanBeAccessed(attribute.PropertyToCompareWith) && !attribute.IsNavigationProperty)
+            if (!typeof(T).PropertyCanBeAccessed(attribute.PropertyToCompareWith))
             {
                 throw new InvalidQueryPropertyException(attribute.PropertyToCompareWith, typeof(T));
             }
