@@ -20,7 +20,7 @@ namespace Doublel.QueryableBuilder.Test.InMemoryTests
         [Fact]
         public void WithPropertyWorksInIsolation()
         {
-            var result = UserQuery.BuildQuery(new TestUserSearch { WithGotJobAt = true }).ToList();
+            var result = UserQuery.BuildQuery(new TestUserSearch { WithMarriedAt = true }).ToList();
             result.Should().HaveCount(1);
             result.First().FirstName.Should().Be("Tim");
             result.First().Username.Should().Be("tim1");
@@ -31,7 +31,7 @@ namespace Doublel.QueryableBuilder.Test.InMemoryTests
             result.ElementAt(1).FirstName.Should().Be("Mark");
             result.ElementAt(2).FirstName.Should().Be("Tim");
 
-            result = UserQuery.BuildQuery(new TestUserSearch { WithGotJobAt = false }).ToList();
+            result = UserQuery.BuildQuery(new TestUserSearch { WithMarriedAt = false }).ToList();
             result.Should().HaveCount(2);
             result.First().FirstName.Should().Be("John");
             result.ElementAt(1).FirstName.Should().Be("Mark");
@@ -86,7 +86,7 @@ namespace Doublel.QueryableBuilder.Test.InMemoryTests
     public class TestUserSearch : DefaultSearch
     {
         [WithQueryProperty]
-        public bool? WithGotJobAt { get; set; }
+        public bool? WithMarriedAt { get; set; }
         [QueryProperty]
         public int? Age { get; set; }
         [QueryProperties(ComparisonOperator.Contains, "FirstName", "Username")]

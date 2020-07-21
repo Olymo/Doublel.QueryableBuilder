@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Doublel.QueryableBuilder</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
     <Authors>Luka Lukić</Authors>
     <Company>Olymo</Company>
     <Description>
@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <PackageReference Include="Doublel.ReflexionExtensions" Version="1.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.6" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.1.8" />
   </ItemGroup>
 
