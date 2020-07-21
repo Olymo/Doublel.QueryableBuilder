@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Doublel.QueryableBuilder", "src\Doublel.QueryableBuilder.csproj", "{6D5AE203-1EC4-4D17-A63F-C9FB5D924C98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Doublel.QueryableBuilder.Test", "test\Doublel.QueryableBuilder.Test.csproj", "{012596DB-FE38-42D3-BA19-DB694860AF5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6D5AE203-1EC4-4D17-A63F-C9FB5D924C98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D5AE203-1EC4-4D17-A63F-C9FB5D924C98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D5AE203-1EC4-4D17-A63F-C9FB5D924C98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{012596DB-FE38-42D3-BA19-DB694860AF5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{012596DB-FE38-42D3-BA19-DB694860AF5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{012596DB-FE38-42D3-BA19-DB694860AF5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{012596DB-FE38-42D3-BA19-DB694860AF5F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
