@@ -36,7 +36,7 @@ var queryObject = new UserQuery
     Age = 20; 
     Keyword = "ma"
 }
-var users = new List<User> { /* a bunch of users */};
+var users = new List<User> { /* a bunch of users */}.AsQueryable();
 
 var result = users.BuildQuery(queryObject);
 ```
