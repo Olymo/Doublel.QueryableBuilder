@@ -15,7 +15,7 @@ namespace Doublel.DynamicQueryBuilder.Attributes
 
             if (name.Contains("With"))
             {
-                name = name.Split("With")[1];
+                name = name.Split(new string[] { "With" }, StringSplitOptions.None)[1];
             }
 
             PropertyToCompareWith = name;
