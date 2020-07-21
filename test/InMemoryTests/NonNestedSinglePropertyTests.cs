@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Doublel.QueryableBuilder.Test.InMemoryTests
 {
-    public class NonNestedCollectionTests
+    public class NonNestedSinglePropertyTests
     {
         [Fact]
         public void ReturnsEntireQueryable_WhenBuildObjectIsNUll()
@@ -75,9 +75,9 @@ namespace Doublel.QueryableBuilder.Test.InMemoryTests
             {
                 return new List<TestUser>
                 {
-                    new TestUser { Id  = 1, Age = 10, FirstName = "John", Username = "john1", GotJobAt = null },
-                    new TestUser { Id  = 2, Age = 20, FirstName = "Mark", Username = "mark1", GotJobAt = null },
-                    new TestUser { Id  = 3, Age = 20, FirstName = "Tim", Username = "tim1", GotJobAt = new DateTime(2012 ,12 ,12) }
+                    new TestUser { Id  = 1, Age = 10, FirstName = "John", Username = "john1", MarriedAt = null },
+                    new TestUser { Id  = 2, Age = 20, FirstName = "Mark", Username = "mark1", MarriedAt = null },
+                    new TestUser { Id  = 3, Age = 20, FirstName = "Tim", Username = "tim1", MarriedAt = new DateTime(2012 ,12 ,12) }
                 }.AsQueryable();
             }
         }
@@ -105,6 +105,6 @@ namespace Doublel.QueryableBuilder.Test.InMemoryTests
         public string FirstName { get; set; }
         public string Username { get; set; }
         public int Age { get; set; }
-        public DateTime? GotJobAt { get; set; }
+        public DateTime? MarriedAt { get; set; }
     }
 }
