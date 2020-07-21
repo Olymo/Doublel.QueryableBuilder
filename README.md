@@ -36,8 +36,9 @@ var queryObject = new UserQuery
     Age = 20; 
     Keyword = "ma"
 }
+var users = new List<User> { /* a bunch of users */};
 
-var result = yourQueryable.BuildQuery(queryObject);
+var result = users.BuildQuery(queryObject);
 ```
 The resulting dataset will consist of all the users having being exactly 20 years old and containing string "ma" (case-insensitive) in either their Username of FirstName properties.
 
