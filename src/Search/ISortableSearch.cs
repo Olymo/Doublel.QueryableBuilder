@@ -7,6 +7,6 @@ namespace Doublel.DynamicQueryBuilder.Search
 {
     public interface ISortableSearch : ISearch
     {
-        internal IEnumerable<QuerySort> Sorts { get; }
+        IEnumerable<QuerySort> Sorts { get; }
     }
 }

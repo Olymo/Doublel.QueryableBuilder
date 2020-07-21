@@ -1,6 +1,5 @@
 ﻿using Doublel.DynamicQueryBuilder.Exceptions;
 using Doublel.DynamicQueryBuilder.Sort;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -14,8 +13,8 @@ namespace Doublel.DynamicQueryBuilder.Search
         /// Example - FirstName.DESC,LastName.ASC
         /// </summary>
         public string SortBy { get; set; }
-        [JsonIgnore]
-        IEnumerable<QuerySort> ISortableSearch.Sorts
+        
+        public IEnumerable<QuerySort> Sorts
         {
             get
             {
