@@ -24,10 +24,10 @@ namespace Doublel.DynamicQueryBuilder.Search
                 {
                     return sorts;
                 }
-                var sortStringRepresentation = SortBy.Split(",");
+                var sortStringRepresentation = SortBy.Split(',');
                 foreach (var sort in sortStringRepresentation)
                 {
-                    var actualSortItem = sort.Split(".");
+                    var actualSortItem = sort.Split('.');
 
                     try
                     {

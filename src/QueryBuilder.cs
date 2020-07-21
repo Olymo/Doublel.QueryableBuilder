@@ -12,12 +12,12 @@ using System.Reflection;
 
 namespace Doublel.DynamicQueryBuilder
 {
-    public class DynamicQueryBuilder
+    internal class QueryBuilder
     {
         private readonly object _filterSource;
         private readonly ParsingConfig _config;
 
-        public DynamicQueryBuilder(object filterSource)
+        internal QueryBuilder(object filterSource)
         {
             _filterSource = filterSource;
             _config = new ParsingConfig
@@ -26,7 +26,7 @@ namespace Doublel.DynamicQueryBuilder
             };
         }
 
-        public virtual IQueryable<T> BuildQuery<T>(IQueryable<T> source)
+        internal virtual IQueryable<T> BuildQuery<T>(IQueryable<T> source)
             where T : class
         {
             if (_filterSource == null)
@@ -44,7 +44,7 @@ namespace Doublel.DynamicQueryBuilder
             return source;
         }
 
-        public virtual object BuildDynamicQuery<T>(IQueryable<T> source) 
+        internal virtual object BuildDynamicQuery<T>(IQueryable<T> source) 
             where T : class
         {
             var query = BuildQuery<T>(source);
@@ -57,7 +57,7 @@ namespace Doublel.DynamicQueryBuilder
             return query.ToList();
         }
 
-        public virtual object BuildDynamicQuery<TIn, TOut>(IQueryable<TIn> source, Expression<Func<TIn, TOut>> transform)
+        internal virtual object BuildDynamicQuery<TIn, TOut>(IQueryable<TIn> source, Expression<Func<TIn, TOut>> transform)
             where TIn : class
             where TOut : class
         {
