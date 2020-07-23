@@ -4,6 +4,7 @@ The idea behind quryable builder is very simple - it should reduce the amount of
 
 In it's essence, it is a collection of extension methods for predicate building, sorting and paging - all the ever present boring things we have to write. Based on your use-case, there are several options to choose from. 
 
+The tool was initialy designed for company's internal purposes, but we've figured out it could help someone else as well. If the example clicked for you, proceed to [building some queryes](https://github.com/Olymo/Doublel.QueryableBuilder/wiki/Building-Queries).
 ### Quick example
 Let's say you have a user storage you would like to query and it's exposed via the IQueryable<TestUser> interface.
 
@@ -41,4 +42,3 @@ var users = new List<User> { /* a bunch of users */}.AsQueryable();
 var result = users.BuildQuery(queryObject);
 ```
 The resulting dataset will consist of all the users having being exactly 20 years old and containing string "ma" (case-insensitive) in either their Username of FirstName properties.
-
