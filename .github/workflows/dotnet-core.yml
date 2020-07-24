@@ -1,4 +1,4 @@
-name: Publish Packages
+name: Build
 
 on:
   push:
@@ -18,7 +18,7 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --configuration Release --no-restore
-    - name: Publish Doublel.QueryableBuilder
+    - name: Build Doublel.QueryableBuilder
       uses: brandedoutcast/publish-nuget@v2.5.2
       with:
           PROJECT_FILE_PATH: src/Doublel.QueryableBuilder.csproj
