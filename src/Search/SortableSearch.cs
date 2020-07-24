@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Doublel.DynamicQueryBuilder.Search
 {
-    public class SortableSearch : DefaultSearch, ISortableSearch
+    public class SortableSearch : ISortableSearch
     {
         /// <summary>
         /// Sort by expected by actual clients. Expected format - PropertyName.Direction(asc|desc) separated by ,
@@ -49,5 +49,14 @@ namespace Doublel.DynamicQueryBuilder.Search
                 return sorts;
             }
         }
+    }
+
+    public class SortablePagedSearch : SortableSearch, IPagedSearch
+    {
+        public int PerPage { get; set; }
+
+        public int Page { get; set;}
+
+        public bool Paginate { get; set; }
     }
 }

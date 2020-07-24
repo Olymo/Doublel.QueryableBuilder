@@ -14,33 +14,33 @@ namespace Doublel.QueryableBuilder
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="query"></param>
-        /// <param name="buildObject"></param>
+        /// <param name="queryObject"></param>
         /// <returns></returns>
-        public static IQueryable<T> BuildQuery<T>(this IQueryable<T> query, object buildObject)
+        public static IQueryable<T> BuildQuery<T>(this IQueryable<T> query, object queryObject)
             where T : class
         {
-            var builder = new QueryBuilder(buildObject);
+            var builder = new QueryBuilder(queryObject);
             return builder.BuildQuery(query);
         }
 
-        public static IQueryable<TOut> BuildQuery<T, TOut>(this IQueryable<T> query, object buildObject, Expression<Func<T, TOut>> project)
+        public static IQueryable<TOut> BuildQuery<T, TOut>(this IQueryable<T> query, object queryObject, Expression<Func<T, TOut>> project)
             where T : class
-            where TOut : class => query.BuildQuery(buildObject).Select(project);
+            where TOut : class => query.BuildQuery(queryObject).Select(project);
 
 
-        public static object BuildDynamicQuery<T>(this IQueryable<T> query, object buildObject)
+        public static object BuildDynamicQuery<T>(this IQueryable<T> query, object queryObject)
             where T : class
         {
-            var builder = new QueryBuilder(buildObject);
+            var builder = new QueryBuilder(queryObject);
 
             return builder.BuildDynamicQuery(query);
         }
 
-        public static object BuildDynamicQuery<T, TOut>(this IQueryable<T> query, object buildObject, Expression<Func<T, TOut>> project)
+        public static object BuildDynamicQuery<T, TOut>(this IQueryable<T> query, object queryObject, Expression<Func<T, TOut>> project)
              where T : class
             where TOut : class
         {
-            var queryBuilder = new QueryBuilder(buildObject);
+            var queryBuilder = new QueryBuilder(queryObject);
 
             return queryBuilder.BuildDynamicQuery(query);
         }

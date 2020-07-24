@@ -1,5 +1,6 @@
 ﻿using Doublel.DynamicQueryBuilder;
 using Doublel.DynamicQueryBuilder.Attributes;
+using Doublel.DynamicQueryBuilder.Exceptions;
 using Doublel.DynamicQueryBuilder.Search;
 using FluentAssertions;
 using System;
@@ -69,6 +70,48 @@ namespace Doublel.QueryableBuilder.Test.InMemoryTests
             result.First().Name.Should().Be("John");
         }
 
+        [Fact]
+        public void QueryPropertyWithProjectionWorksInIsolation_CustomAttributeName()
+        {
+            var result = UserQuery.BuildQuery(new TestUserSearch { CustomProp = 10 }, x => new TestuserDto
+            {
+                Age = x.Age,
+                Name = x.FirstName
+            });
+
+            result.Should().HaveCount(1);
+            result.All(x => x.Age == 10).Should().BeTrue();
+            result.Any(x => x.Age != 10).Should().BeFalse();
+            result.First().Name.Should().Be("John");
+        }
+
+        [Fact]
+        public void QueryPropertyWithProjectionWorksInIsolation_OperatorAndNameProvided()
+        {
+            var result = UserQuery.BuildQuery(new TestUserSearch { CustomProp2 = "mar" }, x => new TestuserDto
+            {
+                Age = x.Age,
+                Name = x.FirstName
+            });
+
+            result.Should().HaveCount(1);
+            result.All(x => x.Age == 20).Should().BeTrue();
+            result.Any(x => x.Age != 20).Should().BeFalse();
+            result.First().Name.Should().Be("Mark");
+        }
+
+        [Fact]
+        public void ThrowsException_WhenPropertyDoesntExist_DefaultAttributeConstructor()
+        {
+            Action a = () =>  UserQuery.BuildQuery(new TestSearchWithInvalidPropertyName { Ages = 10 }, x => new TestuserDto
+            {
+                Age = x.Age,
+                Name = x.FirstName
+            });
+
+            a.Should().ThrowExactly<InvalidQueryPropertyException>();
+        }
+
         private IQueryable<TestUser> UserQuery
         {
             get
@@ -83,6 +126,12 @@ namespace Doublel.QueryableBuilder.Test.InMemoryTests
         }
     }
 
+    public class TestSearchWithInvalidPropertyName
+    {
+        [QueryProperty]
+        public int Ages { get; set; }
+    }
+
     public class TestUserSearch : DefaultSearch
     {
         [WithQueryProperty]
@@ -91,6 +140,10 @@ namespace Doublel.QueryableBuilder.Test.InMemoryTests
         public int? Age { get; set; }
         [QueryProperties(ComparisonOperator.Contains, "FirstName", "Username")]
         public string Keyword { get; set; }
+        [QueryProperty(propertyName: "Age")]
+        public int? CustomProp { get; set; }
+        [QueryProperty(ComparisonOperator.StartsWith, "Username")]
+        public string CustomProp2 { get; set; }
     }
 
     public class TestuserDto
