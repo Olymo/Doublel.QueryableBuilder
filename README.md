@@ -6,10 +6,15 @@ The idea behind quryable builder is very simple - it should reduce the amount of
 In it's essence, it is a collection of extension methods for predicate building, sorting and paging - all the ever present boring things we have to write. Based on your use-case, there are several options to choose from. 
 
 ### Download & Install
+
 **Nuget Package [Doublel.QueryableBuilder](https://www.nuget.org/packages/Doublel.QueryableBuilder/)**
 
 ```powershell
 Install-Package Doublel.QueryableBuilder
+```
+OR
+```powershell
+dotnet add package Doublel.QueryableBuilder
 ```
 Minimum Requirements: **.NET Standard 2.0**
 
