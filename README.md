@@ -1,4 +1,4 @@
-![Build](https://github.com/Olymo/Doublel.QueryableBuilder/workflows/Build/badge.svg)
+![Build](https://github.com/Olymo/Doublel.QueryableBuilder/workflows/Build/badge.svg) https://img.shields.io/nuget/dt/Doublel.QueryableBuilder
 ## Queryable Builder for .NET
 
 The idea behind quryable builder is very simple - it should reduce the amount of boilerplate query code in your codebase. It is designed around the idea of [query object](https://martinfowler.com/eaaCatalog/queryObject.html) and tries to further automate the process. You should simply design a class that will serve as a **query object**, decorate it with some of the predifined attributes, and, if needed, inherit from our base clasess and let the _**builder**_ to the heavy lifting of query composition. 
