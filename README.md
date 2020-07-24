@@ -12,7 +12,7 @@ Install-Package Doublel.QueryableBuilder
 ```
 Minimum Requirements: **.NET Standard 2.0**
 
-The tool was initialy designed for company's internal purposes, but we've figured out it could help someone else as well. If the example clicked for you, proceed to [building some queryes](https://github.com/Olymo/Doublel.QueryableBuilder/wiki/Building-Queries).
+The tool was initialy designed for company's internal purposes, but we've figured out it could help someone else as well. If the example clicks for you, proceed to [building some queryes](https://github.com/Olymo/Doublel.QueryableBuilder/wiki/Building-Queries).
 ### Quick example
 Let's say you have a user storage you would like to query and it's exposed via the IQueryable<TestUser> interface.
 
