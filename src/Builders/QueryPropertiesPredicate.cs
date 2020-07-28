@@ -1,12 +1,9 @@
 ﻿using Doublel.DynamicQueryBuilder.Attributes;
 using Doublel.DynamicQueryBuilder.Exceptions;
 using Doublel.ReflexionExtensions;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Reflection;
-using System.Text;
 
 namespace Doublel.QueryableBuilder.Builders
 {

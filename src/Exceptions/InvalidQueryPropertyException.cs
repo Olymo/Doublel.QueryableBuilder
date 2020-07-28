@@ -11,5 +11,10 @@ namespace Doublel.DynamicQueryBuilder.Exceptions
         {
 
         }
+
+        public InvalidQueryPropertyException(string message) : base(message)
+        {
+
+        }
     }
 }

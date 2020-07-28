@@ -1,4 +1,5 @@
 ﻿using Doublel.DynamicQueryBuilder.Attributes;
+using Doublel.QueryableBuilder.Attributes;
 using Doublel.ReflexionExtensions;
 using System;
 using System.Linq;
@@ -67,6 +68,13 @@ namespace Doublel.QueryableBuilder.Builders
                 var attribute = property.GetAttribute<QueryProperties>();
 
                 return new QueryPropertiesPredicate<T>(_queryObject, attribute);
+            }
+
+            if (property.HasAttribute<WithAnyPropertyAttribute>())
+            {
+                var attribute = property.GetAttribute<WithAnyPropertyAttribute>();
+
+                return new WithAnyPredicate<T>(_queryObject, attribute);
             }
 
             return null;
