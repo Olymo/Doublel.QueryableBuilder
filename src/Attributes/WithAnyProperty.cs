@@ -24,7 +24,7 @@ namespace Doublel.QueryableBuilder.Attributes
             _propertyToCompareWith = propertyToCompareWith;
         }
 
-        public string CollectionProprtyPath => _propertyToCompareWith.Substring(0, _propertyToCompareWith.LastIndexOf("."));
+        public string CollectionPropertyPath => _propertyToCompareWith.Substring(0, _propertyToCompareWith.LastIndexOf("."));
         public string PropertyNameToCompareWith => _propertyToCompareWith.Substring(_propertyToCompareWith.LastIndexOf(".") + 1);
     }
 }

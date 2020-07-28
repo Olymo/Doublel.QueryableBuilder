@@ -20,12 +20,12 @@ namespace Doublel.QueryableBuilder.Builders
 
         internal override IQueryable<T> BuildPredicate(IQueryable<T> query, PropertyInfo property)
         {
-            if (!typeof(T).PropertyCanBeAccessed(_attribute.CollectionProprtyPath))
+            if (!typeof(T).PropertyCanBeAccessed(_attribute.CollectionPropertyPath))
             {
-                throw new InvalidQueryPropertyException(_attribute.CollectionProprtyPath, typeof(T));
+                throw new InvalidQueryPropertyException(_attribute.CollectionPropertyPath, typeof(T));
             }
 
-            var navigationParts = _attribute.CollectionProprtyPath.Split('.').AsEnumerable();
+            var navigationParts = _attribute.CollectionPropertyPath.Split('.').AsEnumerable();
 
             var collectionPropetyType = typeof(T).GetProperty(navigationParts.First()).PropertyType;
 
@@ -57,7 +57,7 @@ namespace Doublel.QueryableBuilder.Builders
             {
                 return query;
             }
-            var dynamicLinqToExecute = $"{_attribute.CollectionProprtyPath}.Any(x => x.{_attribute.PropertyNameToCompareWith} != null && x.{_attribute.PropertyNameToCompareWith}{MakePredicate(_attribute.Operator)})";
+            var dynamicLinqToExecute = $"{_attribute.CollectionPropertyPath}.Any(x => x.{_attribute.PropertyNameToCompareWith} != null && x.{_attribute.PropertyNameToCompareWith}{MakePredicate(_attribute.Operator)})";
             
             return query.Where(dynamicLinqToExecute, valueToCompareAgainst);
         }
