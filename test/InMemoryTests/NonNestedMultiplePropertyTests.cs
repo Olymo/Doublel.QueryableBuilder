@@ -1,13 +1,56 @@
-﻿using System;
+﻿using Doublel.DynamicQueryBuilder.Attributes;
+using FluentAssertions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Xunit;
 
 namespace Doublel.QueryableBuilder.Test.InMemoryTests
 {
     public class NonNestedMultiplePropertyTests
     {
-        private IQueryable<TestUser> UserQuery
+        [Fact]
+        public void QueryProperty_WorksWhenMultiplePropertiesAreCombined()
+        {
+            var result = Items.BuildQuery(new UserQuery
+            {
+                Age = 25,
+                MarriedAt = new DateTime(2020, 8, 19)
+            });
+
+            result.Should().HaveCount(1);
+            result.First().FirstName.Should().Be("Denmla");
+
+            result = Items.BuildQuery(new UserQuery
+            {
+                Age = 25,
+                MarriedAt = null
+            });
+
+            result.Should().HaveCount(2);
+
+            result = Items.BuildQuery(new UserQuery
+            {
+                FirstName = "a",
+                MarriedAt = new DateTime(2020, 1, 1)
+            });
+
+            result.Should().HaveCount(2);
+
+        }
+
+        private class UserQuery
+        {
+            [QueryProperty]
+            public int? Age { get; set; }
+            [QueryProperty(DynamicQueryBuilder.ComparisonOperator.Contains)]
+            public string FirstName { get; set; }
+            [QueryProperty(DynamicQueryBuilder.ComparisonOperator.MoreThan)]
+            public DateTime? MarriedAt { get; set; }
+        }
+
+        private IQueryable<TestUser> Items
         {
             get
             {
