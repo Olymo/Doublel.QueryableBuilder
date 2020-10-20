@@ -29,7 +29,13 @@ namespace Doublel.QueryableBuilder.Builders
 
             orderByClause = orderByClause.Trim(',');
 
-            return _query.OrderBy(orderByClause);
+            return string.IsNullOrEmpty(orderByClause) ? BuildDefaultOrderBy() : _query.OrderBy(orderByClause);
+        }
+
+        private IOrderedQueryable<T> BuildDefaultOrderBy()
+        {
+            var propertyToOrderWith = typeof(T).GetProperties().First().Name;
+            return _query.OrderBy(propertyToOrderWith + " asc");
         }
     }
 }

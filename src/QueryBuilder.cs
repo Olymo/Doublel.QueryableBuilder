@@ -32,7 +32,7 @@ namespace Doublel.DynamicQueryBuilder
             var whereBuilder = new WhereBuilder<T>(source, _filterSource);
             source = whereBuilder.Build();
 
-            if (_filterSource is ISortableSearch search && search.Sorts.Any())
+            if (_filterSource is ISortableSearch search)
             {
                 var orderByBuilder = new OrderByBuilder<T>(source);
                 source = orderByBuilder.Build(search);
