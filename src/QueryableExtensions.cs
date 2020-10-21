@@ -1,4 +1,5 @@
 ﻿using Doublel.DynamicQueryBuilder;
+using Doublel.DynamicQueryBuilder.Search;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,7 +43,22 @@ namespace Doublel.QueryableBuilder
         {
             var queryBuilder = new QueryBuilder(queryObject);
 
-            return queryBuilder.BuildDynamicQuery(query);
+            if(queryObject is IPagedSearch search && search.Paginate)
+            {
+                var paged = queryBuilder.BuildDynamicQuery(query) as PagedResponse<T>;
+
+                return new PagedResponse<TOut>
+                {
+                    CurrentPage = paged.CurrentPage,
+                    ItemsPerPage = paged.ItemsPerPage,
+                    Items = paged.Items.Select(project.Compile()),
+                    TotalCount = paged.TotalCount
+                };
+            }
+            else
+            {
+                return query.BuildQuery(queryObject, project);
+            }
         }
 
     }

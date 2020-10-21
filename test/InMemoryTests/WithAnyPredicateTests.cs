@@ -5,9 +5,7 @@ using Doublel.QueryableBuilder.Attributes;
 using FluentAssertions;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace Doublel.QueryableBuilder.Test.InMemoryTests
@@ -39,14 +37,14 @@ namespace Doublel.QueryableBuilder.Test.InMemoryTests
             result.Should().HaveCount(1);
         }
 
-        private IQueryable<WProduct> Products => new List<WProduct> 
+        private IQueryable<TestProduct> Products => new List<TestProduct> 
         { 
-            new WProduct { Id = 1, Name = "Prod 1", Attributes = new List<WAttribute> { new WAttribute { Id = 1, Name = "Attr1" }}},
-            new WProduct { Id = 2, Name = "Prod 2", Attributes = new List<WAttribute> { new WAttribute { Id = 3, Name = "Atribut 3" }}},
-            new WProduct { Id = 2, Name = "Prod 2", Attributes = new List<WAttribute> { new WAttribute { Id = 3, Name = "Atribut 3" }}, 
+            new TestProduct { Id = 1, Name = "Prod 1", Attributes = new List<TestAttribute> { new TestAttribute { Id = 1, Name = "Attr1" }}},
+            new TestProduct { Id = 2, Name = "Prod 2", Attributes = new List<TestAttribute> { new TestAttribute { Id = 3, Name = "Atribut 3" }}},
+            new TestProduct { Id = 2, Name = "Prod 2", Attributes = new List<TestAttribute> { new TestAttribute { Id = 3, Name = "Atribut 3" }}, 
             Category = new WCategory 
             { 
-                Attributes = new List<WAttribute> { new WAttribute { Id = 4, Name = "CAttribute" }, new WAttribute { Name = "Cattribute2" } }
+                Attributes = new List<TestAttribute> { new TestAttribute { Id = 4, Name = "CAttribute" }, new TestAttribute { Name = "Cattribute2" } }
             }}
         }.AsQueryable();
         
@@ -74,21 +72,21 @@ namespace Doublel.QueryableBuilder.Test.InMemoryTests
         public string Attr { get; set; }
     }
 
-    public class WProduct
+    public class TestProduct
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public IEnumerable<WAttribute> Attributes  { get; set; }
+        public IEnumerable<TestAttribute> Attributes  { get; set; }
         public WCategory Category { get; set; }
     }
 
     public class WCategory
     {
         public string Name { get; set; }
-        public IEnumerable<WAttribute> Attributes { get; set; }
+        public IEnumerable<TestAttribute> Attributes { get; set; }
     }
 
-    public class WAttribute
+    public class TestAttribute
     {
         public int Id { get; set; }
         public string Name { get; set; }
