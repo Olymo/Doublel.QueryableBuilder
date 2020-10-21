@@ -57,7 +57,7 @@ namespace Doublel.QueryableBuilder
             }
             else
             {
-                return query.BuildQuery(queryObject, project);
+                return query.BuildQuery(queryObject, project).ToList();
             }
         }
 
