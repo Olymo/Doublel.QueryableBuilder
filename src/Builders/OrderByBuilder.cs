@@ -19,12 +19,12 @@ namespace Doublel.QueryableBuilder.Builders
 
             foreach (var sortAttribute in search.Sorts)
             {
-                if (!typeof(T).PropertyCanBeAccessed(sortAttribute.SortPropertyName.FirstCharToUpper()))
+                if (!typeof(T).PropertyCanBeAccessed(sortAttribute.SortPropertyName.Replace("_", ".").FirstCharToUpper()))
                 {
                     throw new SortPropertyNotFoundException(sortAttribute.SortPropertyName.FirstCharToUpper());
                 }
 
-                orderByClause += sortAttribute.SortPropertyName + " " + sortAttribute.SortDirection.ToString().ToLower() + ",";
+                orderByClause += sortAttribute.SortPropertyName.Replace("_", ".") + " " + sortAttribute.SortDirection.ToString().ToLower() + ",";
             }
 
             orderByClause = orderByClause.Trim(',');
