@@ -9,7 +9,7 @@ namespace Doublel.DynamicQueryBuilder.Search
     public class SortableSearch : ISortableSearch
     {
         /// <summary>
-        /// Sort by expected by actual clients. Expected format - PropertyName.Direction(asc|desc) separated by ,
+        /// Sort by expected by actual web clients. Expected format - PropertyName.Direction(asc|desc) separated by ,
         /// Example - FirstName.DESC,LastName.ASC
         /// </summary>
         public string SortBy { get; set; }
