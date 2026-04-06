@@ -13,13 +13,15 @@ namespace Doublel.QueryableBuilder.Extensions
             where T : class
         {
             var itemsToSkip = perPage * (currentPage - 1);
+            var totalCount = source.Count();
+            var items = source.Skip(itemsToSkip).Take(perPage).ToList();
 
             return new PagedResponse<T>
             {
-                TotalCount = source.Count(),
+                TotalCount = totalCount,
                 CurrentPage = currentPage,
                 ItemsPerPage = perPage,
-                Items = source.Skip(itemsToSkip).Take(perPage).ToList()
+                Items = items
             };
         }
 
@@ -28,13 +30,15 @@ namespace Doublel.QueryableBuilder.Extensions
             where TOut : class
         {
             var itemsToSkip = perPage * (currentPage - 1);
+            var totalCount = source.Count();
+            var items = source.Skip(itemsToSkip).Take(perPage).Select(transform).ToList();
 
             return new PagedResponse<TOut>
             {
-                TotalCount = source.Count(),
+                TotalCount = totalCount,
                 CurrentPage = currentPage,
                 ItemsPerPage = perPage,
-                Items = source.Skip(itemsToSkip).Take(perPage).Select(transform).ToList()
+                Items = items
             };
         }
     }

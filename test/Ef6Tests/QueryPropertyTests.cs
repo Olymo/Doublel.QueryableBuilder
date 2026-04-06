@@ -70,7 +70,7 @@ namespace Doublel.QueryableBuilder.Test.Ef6Tests
             orderlist.Items.Should().HaveCount(5);
         }
 
-        public Model1 Context => new Model1();
+        public Model1 Context { get; } = new Model1();
 
         public class OrderSearch : SortablePagedSearch
         {

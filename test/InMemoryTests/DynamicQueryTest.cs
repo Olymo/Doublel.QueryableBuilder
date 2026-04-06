@@ -45,8 +45,8 @@ namespace Doublel.QueryableBuilder.Test.InMemoryTests
                 Name = x.Name
             });
 
-            result.Should().BeOfType<IQueryable<ProductDto>>();
-            var productList = result as IQueryable<ProductDto>;
+            result.Should().BeOfType<List<ProductDto>>();
+            var productList = result as List<ProductDto>;
             productList.Should().HaveCount(7);
         }
 
