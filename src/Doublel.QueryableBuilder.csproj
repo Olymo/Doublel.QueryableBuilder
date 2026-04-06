@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <PackageReference Include="Doublel.ReflexionExtensions" Version="1.0.2" />
-    <PackageReference Include="EntityFramework" Version="6.5.1" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.7.2" />
   </ItemGroup>
 
